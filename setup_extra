@@ -1,0 +1,13 @@
+#!/usr/bin/sh
+
+git submodule update --init
+
+cd "DeepMobLearning-Refabricated"
+git apply "../DeepMobLearning-Refabricated.patch"
+
+chmod +x gradlew
+./gradlew publishToMavenLocal
+./gradlew --stop
+
+git restore .
+cd ..

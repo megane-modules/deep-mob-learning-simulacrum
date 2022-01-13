@@ -1,0 +1,52 @@
+diff --git a/build.gradle b/build.gradle
+index ee7f999..7aba985 100644
+--- a/build.gradle
++++ b/build.gradle
+@@ -37,6 +37,7 @@ dependencies {
+ allprojects {
+     apply plugin: 'fabric-loom'
+     apply plugin: 'org.jetbrains.kotlin.jvm'
++    apply plugin: 'maven-publish'
+ 
+     version = project.mod_version
+ 
+@@ -71,6 +72,7 @@ allprojects {
+     }
+ }
+ 
++allprojects {
+ publishing {
+     publications {
+         mavenJava(MavenPublication) {
+@@ -80,6 +82,7 @@ publishing {
+ 
+     // See https://docs.gradle.org/current/userguide/publishipathng_maven.html for information on how to set up publishing.
+     repositories {
++        if (false) {
+         maven {
+             url "https://maven.cafeteria.dev/releases"
+             credentials {
+@@ -90,8 +93,10 @@ publishing {
+                 basic(BasicAuthentication)
+             }
+         }
++        }
+     }
+ }
++}
+ 
+ // ensure that the encoding is set to UTF-8, no matter what the system default is
+ // this fixes some edge cases with special characters not displaying correctly
+@@ -112,6 +117,7 @@ jar {
+     from "LICENSE"
+ }
+ 
++if (false) {
+ curseforge {
+     apiKey = project.property("curseforgeToken")
+     project {
+@@ -145,3 +151,4 @@ curseforge {
+         forgeGradleIntegration = false
+     }
+ }
++}
