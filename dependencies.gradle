@@ -3,22 +3,24 @@ repositories {
     maven { url "https://maven.cafeteria.dev/releases" }
     maven { url "https://ladysnake.jfrog.io/artifactory/mods" }
     maven { url "https://jitpack.io" }
-
-    mavenLocal {
-        content {
-            includeGroup "DeepMobLearning-Refabricated"
-            includeGroup "dev.nathanpb"
-        }
-    }
+    flatDir { dirs "dml_modules" }
 }
 
 dependencies {
-    modImplementation meganeModule("api:7.0.0")
-    modRuntimeOnly meganeModule("runtime:7.0.0")
-    modRuntimeOnly meganeModule("vanilla:7.0.0")
+    modImplementation meganeModule("api:7.1.0")
+    modRuntimeOnly meganeModule("runtime:7.2.0")
+    modRuntimeOnly meganeModule("vanilla:7.1.0")
 
-    modImplementation "curse.maven:deep-mob-learning-simulacrum-508931:3567282"
-    modImplementation "dev.nathanpb:DeepMobLearning-Refabricated:0.5.0-beta2"
+    modImplementation "curse.maven:deep-mob-learning-simulacrum-508931:3680470"
 
-    modImplementation "teamreborn:energy:2.0.0-beta1"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:0.48.0+1.18.2"
+    modImplementation "net.fabricmc:fabric-language-kotlin:1.7.1+kotlin.1.6.10"
+    modImplementation "io.github.ladysnake:PlayerAbilityLib:1.5.0"
+    modImplementation "io.github.cottonmc:LibGui:5.3.1+1.18"
+    modImplementation "me.shedaniel.cloth:cloth-config-fabric:6.2.57"
+    modImplementation "teamreborn:energy:2.2.0"
+
+    fileTree(dir: "dml_modules", include: "*.jar").visit { FileVisitDetails details ->
+        modImplementation(group: "", name: details.name.replaceAll(/[.]jar$/, ""))
+    }
 }

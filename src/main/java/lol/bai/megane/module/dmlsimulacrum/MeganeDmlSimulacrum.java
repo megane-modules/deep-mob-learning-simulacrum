@@ -8,6 +8,7 @@ import lol.bai.megane.api.registry.CommonRegistrar;
 import lol.bai.megane.module.dmlsimulacrum.provider.SimulationChamberEnergyProvider;
 import lol.bai.megane.module.dmlsimulacrum.provider.SimulationChamberProgressProvider;
 
+@SuppressWarnings("unused")
 public class MeganeDmlSimulacrum implements MeganeModule {
 
     @Override
